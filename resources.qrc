@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fraunces.ttf</file>
+        <file>right-black.png</file>
+        <file>eink.qss</file>
+        <file>left-black.png</file>
+        <file>NotoMono-Regular.ttf</file>
+        <file>list.png</file>
+        <file>checkbox-unchecked.png</file>
+        <file>checkbox-checked.png</file>
+    </qresource>
+</RCC>
