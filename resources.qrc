@@ -8,5 +8,6 @@
         <file>list.png</file>
         <file>checkbox-unchecked.png</file>
         <file>checkbox-checked.png</file>
+        <file>crimson.ttf</file>
     </qresource>
 </RCC>

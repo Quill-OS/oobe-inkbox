@@ -63,6 +63,8 @@ private slots:
 
     void on_startBtn_clicked();
 
+    void on_crimsonPro_toggled(bool checked);
+
 private:
     Ui::oobewindow *ui;
 };

@@ -27,11 +27,15 @@ oobewindow::oobewindow(QWidget *parent)
     int id_1 = QFontDatabase::addApplicationFont(":/NotoMono-Regular.ttf");
     QString family_1 = QFontDatabase::applicationFontFamilies(id_1).at(0);
     QFont notomono(family_1);
+    int id_2 = QFontDatabase::addApplicationFont(":/crimson.ttf");
+    QString family_2 = QFontDatabase::applicationFontFamilies(id_2).at(0);
+    QFont crimson(family_2);
 
     ui->logoLabel->setFont(QFont(fraunces));
     ui->logoLabel->setStyleSheet("font-size: 55pt");
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
     ui->roboto->setFont(notomono);
+    ui->crimsonPro->setFont(crimson);
     ui->chooseFontLabel->setStyleSheet("font-size: 12pt");
     ui->fontSizeLabel->setStyleSheet("font-size: 12pt");
     ui->uiScalingLabel->setStyleSheet("font-size: 12pt");
@@ -315,4 +319,14 @@ void oobewindow::on_startBtn_clicked()
     QProcess process;
     process.startDetached("inkbox.sh", QStringList());
     qApp->quit();
+}
+
+void oobewindow::on_crimsonPro_toggled(bool checked)
+{
+    if(checked == true) {
+        string_writeconfig(".config/04-book/font", "Crimson Pro");
+    }
+    else {
+        ;
+    }
 }
