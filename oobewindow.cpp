@@ -330,3 +330,19 @@ void oobewindow::on_crimsonPro_toggled(bool checked)
         ;
     }
 }
+
+void oobewindow::on_checkBox_2_toggled(bool checked)
+{
+    if(checked == true) {
+        ui->scalingWidget->setVisible(false);
+        string_checkconfig(".config/09-dpi/config");
+        dpiSetting = checkconfig_str_val.toStdString();
+        string_writeconfig(".config/09-dpi/config", "false");
+    }
+    else {
+        ui->scalingWidget->setVisible(false);
+
+        // Write previously chosen value
+        string_writeconfig(".config/09-dpi/config", dpiSetting);
+    }
+}

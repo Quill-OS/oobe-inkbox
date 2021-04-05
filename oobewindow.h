@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <iostream>
 #include <fstream>
+#include <QFile>
+#include <QTextStream>
 
 using namespace std;
 
@@ -19,11 +21,20 @@ public:
     oobewindow(QWidget *parent = nullptr);
     ~oobewindow();
     int pageNumber = 0;
+    QString checkconfig_str_val;
+    string dpiSetting;
     void string_writeconfig(string file, string config_option) {
         ofstream fhandler;
         fhandler.open(file);
         fhandler << config_option;
         fhandler.close();
+    }
+    void string_checkconfig(QString file) {
+        QFile config(file);
+        config.open(QIODevice::ReadWrite);
+        QTextStream in (&config);
+        checkconfig_str_val = in.readAll();
+        config.close();
     }
 
 private slots:
@@ -64,6 +75,8 @@ private slots:
     void on_startBtn_clicked();
 
     void on_crimsonPro_toggled(bool checked);
+
+    void on_checkBox_2_toggled(bool checked);
 
 private:
     Ui::oobewindow *ui;
