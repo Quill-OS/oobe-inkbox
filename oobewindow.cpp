@@ -98,7 +98,13 @@ oobewindow::oobewindow(QWidget *parent)
     ui->horizontalLayout_5->setContentsMargins(0,0,0,0);
 
     // Default selected
-    ui->chooseScale1->setChecked(true);
+    if(checkconfig("/opt/inkbox_genuine") == true) {
+        dpi_not_user = true;
+        ui->chooseScale1->setChecked(true);
+    }
+    else {
+        ui->checkBox_2->setChecked(true);
+    }
 }
 
 oobewindow::~oobewindow()
@@ -120,6 +126,21 @@ void oobewindow::on_rightBtn_clicked()
         ui->statusLabel->setText("1 of 3");
     }
     if(pageNumber == 2) {
+        if(ui->checkBox_2->isChecked() == true) {
+            string_writeconfig(".config/09-dpi/config", "false");
+            string_writeconfig(".config/09-dpi/config-enabled", "false");
+        }
+        else {
+            if(dpi_not_user == true) {
+                // Writing default as user didn't explicitly select any option
+                string_writeconfig(".config/09-dpi/config", "187");
+                string_writeconfig(".config/09-dpi/config-enabled", "true");
+                dpi_not_user = false;
+            }
+            else {
+                ;
+            }
+        }
         ui->statusLabel->setText("2 of 3");
     }
     if(pageNumber == 3) {
@@ -164,7 +185,13 @@ void oobewindow::on_leftBtn_clicked()
 void oobewindow::on_chooseScale1_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/09-dpi/config", "187");
+        if(dpi_not_user == true) {
+            ;
+        }
+        else {
+            string_writeconfig(".config/09-dpi/config", "187");
+            dpi_not_user = false;
+        }
     }
     else {
         ;
@@ -340,6 +367,7 @@ void oobewindow::on_crimsonPro_toggled(bool checked)
 
 void oobewindow::on_checkBox_2_toggled(bool checked)
 {
+    // If you think something is missing, check out the on_rightBtn_clicked slot.
     if(checked == true) {
         ui->scalingWidget->setVisible(false);
         string_checkconfig(".config/09-dpi/config");
@@ -347,7 +375,7 @@ void oobewindow::on_checkBox_2_toggled(bool checked)
         string_writeconfig(".config/09-dpi/config", "false");
     }
     else {
-        ui->scalingWidget->setVisible(false);
+        ui->scalingWidget->setVisible(true);
 
         // Write previously chosen value
         string_writeconfig(".config/09-dpi/config", dpiSetting);

@@ -21,6 +21,7 @@ public:
     oobewindow(QWidget *parent = nullptr);
     ~oobewindow();
     int pageNumber = 0;
+    bool dpi_not_user = false;
     QString checkconfig_str_val;
     string dpiSetting;
     void string_writeconfig(string file, string config_option) {
