@@ -36,6 +36,21 @@ public:
         checkconfig_str_val = in.readAll();
         config.close();
     }
+    bool checkconfig(QString file) {
+        QFile config(file);
+        config.open(QIODevice::ReadOnly);
+        QTextStream in (&config);
+        const QString content = in.readAll();
+        std::string contentstr = content.toStdString();
+        if(contentstr.find("true") != std::string::npos) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        config.close();
+        return 0;
+    };
 
 private slots:
     void on_rightBtn_clicked();

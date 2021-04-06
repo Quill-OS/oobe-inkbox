@@ -315,7 +315,14 @@ void oobewindow::on_font5_toggled(bool checked)
 
 void oobewindow::on_startBtn_clicked()
 {
-    string_writeconfig("/external_root/boot/flags/FIRST_BOOT", "false");
+    if(checkconfig("/opt/inkbox_genuine") == true) {
+        // InkBox OS
+        string_writeconfig("/external_root/boot/flags/FIRST_BOOT", "false");
+    }
+    else {
+        // We're in Nickel land!
+        string_writeconfig(".flags/FIRST_BOOT", "false");
+    }
     QProcess process;
     process.startDetached("inkbox.sh", QStringList());
     qApp->quit();
