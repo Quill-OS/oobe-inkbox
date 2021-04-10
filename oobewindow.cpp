@@ -133,7 +133,16 @@ void oobewindow::on_rightBtn_clicked()
         else {
             if(dpi_not_user == true) {
                 // Writing default as user didn't explicitly select any option
-                string_writeconfig(".config/09-dpi/config", "187");
+                string_checkconfig("/opt/inkbox_device");
+                if(checkconfig_str_val == "n705\n") {
+                    string_writeconfig(".config/09-dpi/config", "187");
+                }
+                if(checkconfig_str_val == "n905\n") {
+                    string_writeconfig(".config/09-dpi/config", "160");
+                }
+                else {
+                    string_writeconfig(".config/09-dpi/config", "187");
+                }
                 string_writeconfig(".config/09-dpi/config-enabled", "true");
                 dpi_not_user = false;
             }
