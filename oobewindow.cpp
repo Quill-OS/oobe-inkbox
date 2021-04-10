@@ -189,7 +189,16 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             ;
         }
         else {
-            string_writeconfig(".config/09-dpi/config", "187");
+            string_checkconfig("/opt/inkbox_device");
+            if(checkconfig_str_val == "n905\n") {
+                string_writeconfig(".config/09-dpi/config", "160");
+            }
+            if(checkconfig_str_val == "n705\n") {
+                string_writeconfig(".config/09-dpi/config", "187");
+            }
+            else {
+                string_writeconfig(".config/09-dpi/config", "187");
+            }
             dpi_not_user = false;
         }
     }
@@ -201,7 +210,16 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
 void oobewindow::on_chooseScale2_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/09-dpi/config", "214");
+        string_checkconfig("/opt/inkbox_device");
+        if(checkconfig_str_val == "n905\n") {
+            string_writeconfig(".config/09-dpi/config", "187");
+        }
+        if(checkconfig_str_val == "n705\n") {
+            string_writeconfig(".config/09-dpi/config", "214");
+        }
+        else {
+            string_writeconfig(".config/09-dpi/config", "214");
+        }
     }
     else {
         ;
@@ -211,7 +229,16 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
 void oobewindow::on_chooseScale3_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/09-dpi/config", "227");
+        string_checkconfig("/opt/inkbox_device");
+        if(checkconfig_str_val == "n905\n") {
+            string_writeconfig(".config/09-dpi/config", "200");
+        }
+        if(checkconfig_str_val == "n705\n") {
+            string_writeconfig(".config/09-dpi/config", "227");
+        }
+        else {
+            string_writeconfig(".config/09-dpi/config", "227");
+        }
     }
     else {
         ;
