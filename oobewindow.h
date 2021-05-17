@@ -37,6 +37,13 @@ public:
         checkconfig_str_val = in.readAll();
         config.close();
     }
+    void string_checkconfig_ro(QString file) {
+        QFile config(file);
+        config.open(QIODevice::ReadOnly);
+        QTextStream in (&config);
+        checkconfig_str_val = in.readAll();
+        config.close();
+    }
     bool checkconfig(QString file) {
         QFile config(file);
         config.open(QIODevice::ReadOnly);

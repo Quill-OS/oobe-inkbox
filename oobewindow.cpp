@@ -133,7 +133,7 @@ void oobewindow::on_rightBtn_clicked()
         else {
             if(dpi_not_user == true) {
                 // Writing default as user didn't explicitly select any option
-                string_checkconfig("/opt/inkbox_device");
+                string_checkconfig_ro("/opt/inkbox_device");
                 if(checkconfig_str_val == "n705\n") {
                     string_writeconfig(".config/09-dpi/config", "187");
                 }
@@ -198,7 +198,7 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             ;
         }
         else {
-            string_checkconfig("/opt/inkbox_device");
+            string_checkconfig_ro("/opt/inkbox_device");
             if(checkconfig_str_val == "n905\n") {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
@@ -219,7 +219,7 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
 void oobewindow::on_chooseScale2_toggled(bool checked)
 {
     if(checked == true) {
-        string_checkconfig("/opt/inkbox_device");
+        string_checkconfig_ro("/opt/inkbox_device");
         if(checkconfig_str_val == "n905\n") {
             string_writeconfig(".config/09-dpi/config", "187");
         }
@@ -238,7 +238,7 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
 void oobewindow::on_chooseScale3_toggled(bool checked)
 {
     if(checked == true) {
-        string_checkconfig("/opt/inkbox_device");
+        string_checkconfig_ro("/opt/inkbox_device");
         if(checkconfig_str_val == "n905\n") {
             string_writeconfig(".config/09-dpi/config", "200");
         }
