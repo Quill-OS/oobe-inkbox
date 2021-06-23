@@ -9,5 +9,6 @@
         <file>checkbox-unchecked.png</file>
         <file>checkbox-checked.png</file>
         <file>crimson.ttf</file>
+        <file>kobox-icon.png</file>
     </qresource>
 </RCC>

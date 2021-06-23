@@ -22,6 +22,7 @@ public:
     ~oobewindow();
     int pageNumber = 0;
     bool dpi_not_user = false;
+    bool x11_not_user = false;
     QString checkconfig_str_val;
     string dpiSetting;
     void string_writeconfig(string file, string config_option) {
@@ -100,6 +101,8 @@ private slots:
     void on_crimsonPro_toggled(bool checked);
 
     void on_checkBox_2_toggled(bool checked);
+
+    void on_checkBox_3_toggled(bool checked);
 
 private:
     Ui::oobewindow *ui;

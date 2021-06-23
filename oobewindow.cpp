@@ -41,6 +41,8 @@ oobewindow::oobewindow(QWidget *parent)
     ui->uiScalingLabel->setStyleSheet("font-size: 12pt");
     ui->setupFinishedLabel->setStyleSheet("font-size: 20pt; padding: 40px");
     ui->darkModeLabel->setStyleSheet("font-size: 12pt");
+    ui->koboxLabel->setStyleSheet("font-size: 12pt");
+    ui->koboxInfoLabel->setStyleSheet("font-size: 9pt");
 
     QFont roboto("Roboto");
     ui->roboto->setFont(roboto);
@@ -72,6 +74,8 @@ oobewindow::oobewindow(QWidget *parent)
     float scale2_H = sH / 8;
     float scale3_W = sW / 6;
     float scale3_H = sH / 6;
+    float koboxScale_W = sW / 1.50;
+    float koboxScale_H = sH / 1.50;
 
     QPixmap pixmap(":/list.png");
     QPixmap scaled1Pixmap = pixmap.scaled(scale1_W, scale1_H, Qt::KeepAspectRatio);
@@ -82,6 +86,10 @@ oobewindow::oobewindow(QWidget *parent)
 
     QPixmap scaled3Pixmap = pixmap.scaled(scale3_W, scale3_H, Qt::KeepAspectRatio);
     ui->scale3->setPixmap(scaled3Pixmap);
+
+    QPixmap koboxIconPixmap(":/kobox-icon.png");
+    QPixmap scaledKoboxIconPixmap = koboxIconPixmap.scaled(koboxScale_W, koboxScale_H, Qt::KeepAspectRatio);
+    ui->koboxIcon->setPixmap(scaledKoboxIconPixmap);
 
     // Font size chooser and misc. font sizes
     ui->font1->setStyleSheet("font-size: 6pt");
@@ -105,6 +113,11 @@ oobewindow::oobewindow(QWidget *parent)
     else {
         ui->checkBox_2->setChecked(true);
     }
+
+    if(checkconfig("/external_root/boot/flags/X11_START") == true) {
+        x11_not_user = true;
+        ui->checkBox_3->setChecked(true);
+    }
 }
 
 oobewindow::~oobewindow()
@@ -123,7 +136,7 @@ void oobewindow::on_rightBtn_clicked()
         ui->statusLabel->setText("Press Next to setup");
     }
     if(pageNumber == 1) {
-        ui->statusLabel->setText("1 of 3");
+        ui->statusLabel->setText("1 of 4");
     }
     if(pageNumber == 2) {
         if(ui->checkBox_2->isChecked() == true) {
@@ -150,12 +163,15 @@ void oobewindow::on_rightBtn_clicked()
                 ;
             }
         }
-        ui->statusLabel->setText("2 of 3");
+        ui->statusLabel->setText("2 of 4");
     }
     if(pageNumber == 3) {
-        ui->statusLabel->setText("3 of 3");
+        ui->statusLabel->setText("3 of 4");
     }
     if(pageNumber == 4) {
+        ui->statusLabel->setText("4 of 4");
+    }
+    if(pageNumber == 5) {
         ui->statusLabel->setText("Welcome to InkBox");
         ui->rightBtn->setEnabled(false);
     }
@@ -176,16 +192,19 @@ void oobewindow::on_leftBtn_clicked()
         ui->statusLabel->setText("Press Next to setup");
     }
     if(pageNumber == 1) {
-        ui->statusLabel->setText("1 of 3");
+        ui->statusLabel->setText("1 of 4");
     }
     if(pageNumber == 2) {
-        ui->statusLabel->setText("2 of 3");
+        ui->statusLabel->setText("2 of 4");
     }
     if(pageNumber == 3) {
-        ui->statusLabel->setText("3 of 3");
+        ui->statusLabel->setText("3 of 4");
         ui->rightBtn->setEnabled(true);
     }
     if(pageNumber == 4) {
+        ui->statusLabel->setText("4 of 4");
+    }
+    if(pageNumber == 5) {
         ui->statusLabel->setText("Welcome to InkBox");
         ui->rightBtn->setEnabled(false);
     }
@@ -415,5 +434,20 @@ void oobewindow::on_checkBox_2_toggled(bool checked)
 
         // Write previously chosen value
         string_writeconfig(".config/09-dpi/config", dpiSetting);
+    }
+}
+
+void oobewindow::on_checkBox_3_toggled(bool checked)
+{
+    if(checked == true) {
+        if(x11_not_user != true) {
+            string_writeconfig("/external_root/boot/flags/X11_START", "true");
+        }
+        else {
+            x11_not_user = false;
+        }
+    }
+    else {
+        string_writeconfig("/external_root/boot/flags/X11_START", "false");
     }
 }
