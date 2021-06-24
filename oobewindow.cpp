@@ -199,10 +199,10 @@ void oobewindow::on_leftBtn_clicked()
     }
     if(pageNumber == 3) {
         ui->statusLabel->setText("3 of 4");
-        ui->rightBtn->setEnabled(true);
     }
     if(pageNumber == 4) {
         ui->statusLabel->setText("4 of 4");
+        ui->rightBtn->setEnabled(true);
     }
     if(pageNumber == 5) {
         ui->statusLabel->setText("Welcome to InkBox");
