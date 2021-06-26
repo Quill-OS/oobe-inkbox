@@ -150,8 +150,11 @@ void oobewindow::on_rightBtn_clicked()
                 if(checkconfig_str_val == "n705\n") {
                     string_writeconfig(".config/09-dpi/config", "187");
                 }
-                if(checkconfig_str_val == "n905\n") {
+                else if(checkconfig_str_val == "n905\n") {
                     string_writeconfig(".config/09-dpi/config", "160");
+                }
+                else if(checkconfig_str_val == "n613\n") {
+                    string_writeconfig(".config/09-dpi/config", "195");
                 }
                 else {
                     string_writeconfig(".config/09-dpi/config", "187");
@@ -221,8 +224,11 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             if(checkconfig_str_val == "n905\n") {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
-            if(checkconfig_str_val == "n705\n") {
+            else if(checkconfig_str_val == "n705\n") {
                 string_writeconfig(".config/09-dpi/config", "187");
+            }
+            else if(checkconfig_str_val == "n613\n") {
+                string_writeconfig(".config/09-dpi/config", "195");
             }
             else {
                 string_writeconfig(".config/09-dpi/config", "187");
@@ -242,8 +248,11 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
         if(checkconfig_str_val == "n905\n") {
             string_writeconfig(".config/09-dpi/config", "187");
         }
-        if(checkconfig_str_val == "n705\n") {
+        else if(checkconfig_str_val == "n705\n") {
             string_writeconfig(".config/09-dpi/config", "214");
+        }
+        else if(checkconfig_str_val == "n613\n") {
+            string_writeconfig(".config/09-dpi/config", "210");
         }
         else {
             string_writeconfig(".config/09-dpi/config", "214");
@@ -261,8 +270,11 @@ void oobewindow::on_chooseScale3_toggled(bool checked)
         if(checkconfig_str_val == "n905\n") {
             string_writeconfig(".config/09-dpi/config", "200");
         }
-        if(checkconfig_str_val == "n705\n") {
+        else if(checkconfig_str_val == "n705\n") {
             string_writeconfig(".config/09-dpi/config", "227");
+        }
+        else if(checkconfig_str_val == "n613\n") {
+            string_writeconfig(".config/09-dpi/config", "225");
         }
         else {
             string_writeconfig(".config/09-dpi/config", "227");
