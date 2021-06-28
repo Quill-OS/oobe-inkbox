@@ -2,10 +2,6 @@
 #define OOBEWINDOW_H
 
 #include <QMainWindow>
-#include <iostream>
-#include <fstream>
-#include <QFile>
-#include <QTextStream>
 
 using namespace std;
 
@@ -24,42 +20,17 @@ public:
     bool dpi_not_user = false;
     bool x11_not_user = false;
     QString checkconfig_str_val;
-    string dpiSetting;
-    void string_writeconfig(string file, string config_option) {
-        ofstream fhandler;
-        fhandler.open(file);
-        fhandler << config_option;
-        fhandler.close();
-    }
-    void string_checkconfig(QString file) {
-        QFile config(file);
-        config.open(QIODevice::ReadWrite);
-        QTextStream in (&config);
-        checkconfig_str_val = in.readAll();
-        config.close();
-    }
-    void string_checkconfig_ro(QString file) {
-        QFile config(file);
-        config.open(QIODevice::ReadOnly);
-        QTextStream in (&config);
-        checkconfig_str_val = in.readAll();
-        config.close();
-    }
-    bool checkconfig(QString file) {
-        QFile config(file);
-        config.open(QIODevice::ReadOnly);
-        QTextStream in (&config);
-        const QString content = in.readAll();
-        std::string contentstr = content.toStdString();
-        if(contentstr.find("true") != std::string::npos) {
-            return true;
-        }
-        else {
-            return false;
-        }
-        config.close();
-        return 0;
-    };
+    std::string dpiSetting;
+    bool checkconfig(QString file);
+    void string_checkconfig(QString file);
+    void string_checkconfig_ro(QString file);
+    void string_writeconfig(string file, string config_option);
+    void set_brightness(int value);
+    void set_brightness_ntxio(int value);
+    void pre_set_brightness(int brightnessValue);
+    void setDefaultWorkDir();
+    int get_brightness();
+    void cinematicBrightness(int value, int mode);
 
 private slots:
     void on_rightBtn_clicked();

@@ -8,6 +8,15 @@
 #include <QRect>
 #include <QDebug>
 #include <QProcess>
+#include <QDir>
+#include <iostream>
+#include <fstream>
+#include <QTextStream>
+#include <QThread>
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 
 oobewindow::oobewindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,7 +41,14 @@ oobewindow::oobewindow(QWidget *parent)
     QFont crimson(family_2);
 
     ui->logoLabel->setFont(QFont(fraunces));
-    ui->logoLabel->setStyleSheet("font-size: 55pt");
+    string_checkconfig_ro("/opt/inkbox_device");
+    if(checkconfig_str_val == "n613") {
+        ui->logoLabel->setStyleSheet("font-size: 55pt");
+    }
+    else {
+        ui->logoLabel->setStyleSheet("font-size: 65pt");
+    }
+
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
     ui->roboto->setFont(notomono);
     ui->crimsonPro->setFont(crimson);
@@ -118,13 +134,19 @@ oobewindow::oobewindow(QWidget *parent)
         x11_not_user = true;
         ui->checkBox_3->setChecked(true);
     }
+
+    // Brightness
+    int brightnessVal = 50;
+    std::string brightnessValStr = std::to_string(brightnessVal);
+    cinematicBrightness(brightnessVal, 0);
+    setDefaultWorkDir();
+    string_writeconfig(".config/03-brightness/config", brightnessValStr);
 }
 
 oobewindow::~oobewindow()
 {
     delete ui;
 }
-
 
 void oobewindow::on_rightBtn_clicked()
 {
@@ -412,10 +434,12 @@ void oobewindow::on_startBtn_clicked()
     if(checkconfig("/opt/inkbox_genuine") == true) {
         // InkBox OS
         string_writeconfig("/external_root/boot/flags/FIRST_BOOT", "false");
+        string_writeconfig("/tmp/oobe-inkbox_completed", "true");
     }
     else {
         // We're in Nickel land!
         string_writeconfig(".flags/FIRST_BOOT", "false");
+        string_writeconfig("/tmp/oobe-inkbox_completed", "true");
     }
     QProcess process;
     process.startDetached("inkbox.sh", QStringList());
@@ -461,5 +485,123 @@ void oobewindow::on_checkBox_3_toggled(bool checked)
     }
     else {
         string_writeconfig("/external_root/boot/flags/X11_START", "false");
+    }
+}
+
+void oobewindow::pre_set_brightness(int brightnessValue) {
+    string_checkconfig_ro("/opt/inkbox_device");
+
+    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n") {
+        set_brightness(brightnessValue);
+    }
+    else if(checkconfig_str_val == "n613\n") {
+        set_brightness_ntxio(brightnessValue);
+    }
+    else {
+        set_brightness(brightnessValue);
+    }
+}
+
+void oobewindow::set_brightness_ntxio(int value) {
+    // Thanks to Kevin Short for this (GloLight)
+    int light;
+    if((light = open("/dev/ntx_io", O_RDWR)) == -1) {
+            fprintf(stderr, "Error opening ntx_io device\n");
+    }
+    ioctl(light, 241, value);
+}
+
+void oobewindow::set_brightness(int value) {
+    std::ofstream fhandler;
+    fhandler.open("/var/run/brightness");
+    fhandler << value;
+    fhandler.close();
+}
+
+bool oobewindow::checkconfig(QString file) {
+    QFile config(file);
+    config.open(QIODevice::ReadOnly);
+    QTextStream in (&config);
+    const QString content = in.readAll();
+    std::string contentstr = content.toStdString();
+    if(contentstr.find("true") != std::string::npos) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    config.close();
+    return 0;
+}
+
+void oobewindow::string_writeconfig(string file, string config_option) {
+    ofstream fhandler;
+    fhandler.open(file);
+    fhandler << config_option;
+    fhandler.close();
+}
+void oobewindow::string_checkconfig(QString file) {
+    QFile config(file);
+    config.open(QIODevice::ReadWrite);
+    QTextStream in (&config);
+    checkconfig_str_val = in.readAll();
+    config.close();
+}
+void oobewindow::string_checkconfig_ro(QString file) {
+    QFile config(file);
+    config.open(QIODevice::ReadOnly);
+    QTextStream in (&config);
+    checkconfig_str_val = in.readAll();
+    config.close();
+}
+
+void oobewindow::setDefaultWorkDir() {
+    QDir::setCurrent("/mnt/onboard/.adds/inkbox");
+}
+
+int oobewindow::get_brightness() {
+    string_checkconfig_ro("/opt/inkbox_device");
+    if(checkconfig_str_val == "n613") {
+        string_checkconfig_ro(".config/03-brightness/config");
+        int brightness;
+        if(checkconfig_str_val == "") {
+            brightness = 0;
+        }
+        else {
+            brightness = checkconfig_str_val.toInt();
+        }
+        return brightness;
+    }
+    else {
+        QFile brightness("/var/run/brightness");
+        brightness.open(QIODevice::ReadOnly);
+        QString valuestr = brightness.readAll();
+        int value = valuestr.toInt();
+        brightness.close();
+        return value;
+    }
+    return 0;
+}
+
+void oobewindow::cinematicBrightness(int value, int mode) {
+    /* mode can be 0 or 1, respectively
+     * 0: Bring UP brightness
+     * 1: Bring DOWN brightness
+    */
+    if(mode == 0) {
+        int brightness = 0;
+        while(brightness != value) {
+            brightness = brightness + 1;
+            pre_set_brightness(brightness);
+            QThread::msleep(33);
+        }
+    }
+    else {
+        int brightness = get_brightness();
+        while(brightness != 0) {
+            brightness = brightness - 1;
+            pre_set_brightness(brightness);
+            QThread::msleep(33);
+        }
     }
 }
