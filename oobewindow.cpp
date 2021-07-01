@@ -41,7 +41,13 @@ oobewindow::oobewindow(QWidget *parent)
     QFont crimson(family_2);
 
     ui->logoLabel->setFont(QFont(fraunces));
-    ui->logoLabel->setStyleSheet("font-size: 55pt");
+    string_checkconfig_ro("/opt/inkbox_device");
+    if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n905\n") {
+        ui->logoLabel->setStyleSheet("font-size: 65pt");
+    }
+    else {
+        ui->logoLabel->setStyleSheet("font-size: 55pt");
+    }
 
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
     ui->roboto->setFont(notomono);
