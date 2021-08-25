@@ -39,6 +39,13 @@ oobewindow::oobewindow(QWidget *parent)
     int id_2 = QFontDatabase::addApplicationFont(":/crimson.ttf");
     QString family_2 = QFontDatabase::applicationFontFamilies(id_2).at(0);
     QFont crimson(family_2);
+    int id_3 = QFontDatabase::addApplicationFont(":/Bitter-Medium.ttf");
+    QString family_3 = QFontDatabase::applicationFontFamilies(id_3).at(0);
+    QFont bitter(family_3);
+    int id_4 = QFontDatabase::addApplicationFont(":/IbarraRealNova-Medium.ttf");
+    QString family_4 = QFontDatabase::applicationFontFamilies(id_4).at(0);
+    QFont ibarra(family_4);
+
 
     ui->logoLabel->setFont(QFont(fraunces));
     string_checkconfig_ro("/opt/inkbox_device");
@@ -52,6 +59,8 @@ oobewindow::oobewindow(QWidget *parent)
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
     ui->roboto->setFont(notomono);
     ui->crimsonPro->setFont(crimson);
+    ui->bitter->setFont(bitter);
+    ui->ibarra->setFont(ibarra);
     ui->chooseFontLabel->setStyleSheet("font-size: 12pt");
     ui->fontSizeLabel->setStyleSheet("font-size: 12pt");
     ui->uiScalingLabel->setStyleSheet("font-size: 12pt");
@@ -605,3 +614,9 @@ void oobewindow::cinematicBrightness(int value, int mode) {
         }
     }
 }
+
+void oobewindow::on_bitter_toggled(bool checked)
+{
+
+}
+

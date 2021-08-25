@@ -75,6 +75,8 @@ private slots:
 
     void on_checkBox_3_toggled(bool checked);
 
+    void on_bitter_toggled(bool checked);
+
 private:
     Ui::oobewindow *ui;
 };

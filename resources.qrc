@@ -10,5 +10,7 @@
         <file>checkbox-checked.png</file>
         <file>crimson.ttf</file>
         <file>kobox-icon.png</file>
+        <file>IbarraRealNova-Medium.ttf</file>
+        <file>Bitter-Medium.ttf</file>
     </qresource>
 </RCC>
