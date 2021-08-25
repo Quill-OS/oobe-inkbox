@@ -1325,7 +1325,7 @@
                </font>
               </property>
               <property name="text">
-               <string>All is set up.</string>
+               <string>Setup complete.</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
