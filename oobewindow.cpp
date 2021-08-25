@@ -617,6 +617,22 @@ void oobewindow::cinematicBrightness(int value, int mode) {
 
 void oobewindow::on_bitter_toggled(bool checked)
 {
+    if(checked == true) {
+        string_writeconfig(".config/04-book/font", "Bitter");
+    }
+    else {
+        ;
+    }
+}
 
+
+void oobewindow::on_ibarra_toggled(bool checked)
+{
+    if(checked == true) {
+        string_writeconfig(".config/04-book/font", "Ibarra Real Nova");
+    }
+    else {
+        ;
+    }
 }
 
