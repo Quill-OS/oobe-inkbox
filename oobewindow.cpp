@@ -23,6 +23,9 @@ oobewindow::oobewindow(QWidget *parent)
     , ui(new Ui::oobewindow)
 {
     ui->setupUi(this);
+    ui->checkBox->setFont(QFont("u001"));
+    ui->checkBox_2->setFont(QFont("u001"));
+    ui->checkBox_3->setFont(QFont("u001"));
 
     // Stylesheet and general look
     QFile stylesheetFile(":/eink.qss");
@@ -60,7 +63,7 @@ oobewindow::oobewindow(QWidget *parent)
     ui->roboto->setFont(notomono);
     ui->crimsonPro->setFont(crimson);
     ui->bitter->setFont(bitter);
-    ui->univers->setFont("u001");
+    ui->univers->setFont(QFont("u001"));
     ui->ibarra->setFont(ibarra);
     ui->chooseFontLabel->setStyleSheet("font-size: 12pt");
     ui->fontSizeLabel->setStyleSheet("font-size: 12pt");
@@ -92,7 +95,7 @@ oobewindow::oobewindow(QWidget *parent)
     ui->leftBtn->setIcon(QIcon(":/left-black.png"));
     ui->leftBtn->setIconSize(QSize(stdIconWidth, stdIconHeight));
 
-    ui->startBtn->setStyleSheet("padding: 20px; background: lightGrey");
+    ui->startBtn->setStyleSheet("padding: 30px; background: lightGrey");
 
     float scale1_W = sW / 10;
     float scale1_H = sH / 10;

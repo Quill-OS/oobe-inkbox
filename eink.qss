@@ -32,11 +32,16 @@ QPushButton[type="bw"]:focus
 {
     border: 0;
 }
-QPushButton[type="bw"]:pressed
+QPushButton[type="bw"]
 {
     background: black;
-    color: black;
+    color: white;
     border: none;
+}
+
+QPushButton
+{
+    border-radius: 10px;
 }
 
 QLabel[type="mangainfolabel"]
@@ -151,7 +156,7 @@ QMenu::indicator
 }
 QMenu::indicator:exclusive:checked
 {
-    image: url(:/checkbox-checked.png);
+    image: url(:/images/icons/checkbox-checked.png);
 }
 
 QCheckBox::indicator
@@ -178,7 +183,9 @@ QLineEdit, QSpinBox, QDoubleSpinBox
   background-color:white;
   border:1px solid black;
   padding: 2px;
+  border-radius: 10px;
 }
+
 QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus
 {
   border: 1px solid black;
@@ -192,26 +199,22 @@ QLineEdit:edit-focus, QSpinBox:edit-focus, QDoubleSpinBox:edit-focus
 
 QTextEdit
 {
-  background-color:transparent;
-  border:1px solid black;
-  padding: 1px;
+  border: none;
 }
 QTextEdit:focus
 {
-  border: 1px solid black;
-  padding: 1px;
+  border: none;
 }
 QTextEdit:edit-focus
 {
-  border: 3px solid black;
-  padding: 0px;
+  border: none;
 }
 
 QComboBox
 {
   background-color:white;
   border: 1.5px solid black;
-  border-radius:5px;
+  border-radius:10px;
   padding-top: 3px;
   padding-right: 0px;
   padding-bottom: 3px;
@@ -228,6 +231,7 @@ QComboBox:focus
 QComboBox::drop-down
 {
   border-width:1px;
+  border-radius:10px;
 }
 QComboBox::down-arrow {
   image:url(:/down-arrow.png);
@@ -322,7 +326,6 @@ QToolButton:pressed {
 
 QSlider::groove:horizontal {
      border: 1.5px solid black;
-     border-radius: 0px;
      height: 15px;
      background: white;
      margin: 0px 0;
@@ -330,11 +333,9 @@ QSlider::groove:horizontal {
 QSlider::handle:horizontal {
      background: black;
      border: 1.5px solid black;
-     border-radius: 0px;
      height: 15px;
      width: 25px;
      margin: 0px 0;
-     border-radius: 9px;
 }
 
 QSlider::handle:horizontal::focus {
@@ -342,20 +343,20 @@ QSlider::handle:horizontal::focus {
 }
 
 QScrollBar {
-background: white;
-border: 5px solid lightGrey;
+    background: white;
+    border: 5px solid lightGrey;
 }
 
 QScrollBar:vertical {
-    width: 25px
+    width: 32.5px
 }
 QScrollBar:horizontal {
-    height: 25px
+    height: 32.5px
 }
 QScrollBar::handle {
     background: black;
-    min-width: 25px;
-    min-height: 25px;
+    min-width: 32.5px;
+    min-height: 32.5px;
     border: 5px;
 }
 QScrollBar::add-line {
@@ -367,11 +368,13 @@ QScrollBar::sub-line {
 
 QDialog {
     border: 5px solid black;
+    border-radius: 10px;
     background: white;
 }
 
 QProgressBar {
     border: 1.5px solid black;
+    border-radius: 10px;
     text-align: center;
     background: white;
     color: rgb(160, 160, 160);
@@ -380,6 +383,7 @@ QProgressBar {
 QProgressBar::chunk {
     background: black;
     color: white;
+    border-radius: 7px;
 }
 
 
