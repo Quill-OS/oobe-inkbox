@@ -60,6 +60,7 @@ oobewindow::oobewindow(QWidget *parent)
     ui->roboto->setFont(notomono);
     ui->crimsonPro->setFont(crimson);
     ui->bitter->setFont(bitter);
+    ui->univers->setFont("u001");
     ui->ibarra->setFont(ibarra);
     ui->chooseFontLabel->setStyleSheet("font-size: 12pt");
     ui->fontSizeLabel->setStyleSheet("font-size: 12pt");
@@ -642,6 +643,17 @@ void oobewindow::on_ibarra_toggled(bool checked)
 {
     if(checked == true) {
         string_writeconfig(".config/04-book/font", "Ibarra Real Nova");
+    }
+    else {
+        ;
+    }
+}
+
+
+void oobewindow::on_univers_toggled(bool checked)
+{
+    if(checked == true) {
+        string_writeconfig(".config/04-book/font", "u001");
     }
     else {
         ;

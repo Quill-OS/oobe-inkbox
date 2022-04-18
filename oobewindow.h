@@ -79,6 +79,8 @@ private slots:
 
     void on_ibarra_toggled(bool checked);
 
+    void on_univers_toggled(bool checked);
+
 private:
     Ui::oobewindow *ui;
 };
