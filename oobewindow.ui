@@ -529,46 +529,6 @@
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="font">
-                 <font>
-                  <family>Inter</family>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Disable, use default values</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <spacer name="horizontalSpacer_19">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="0" column="2">
-               <spacer name="horizontalSpacer_20">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
              </layout>
             </item>
            </layout>

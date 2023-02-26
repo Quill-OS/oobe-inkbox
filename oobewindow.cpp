@@ -24,7 +24,6 @@ oobewindow::oobewindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->checkBox->setFont(QFont("u001"));
-    ui->checkBox_2->setFont(QFont("u001"));
     ui->checkBox_3->setFont(QFont("u001"));
 
     // Stylesheet and general look
@@ -135,13 +134,8 @@ oobewindow::oobewindow(QWidget *parent)
     ui->horizontalLayout_5->setContentsMargins(0,0,0,0);
 
     // Default selected
-    if(checkconfig("/opt/inkbox_genuine") == true) {
-        dpi_not_user = true;
-        ui->chooseScale1->setChecked(true);
-    }
-    else {
-        ui->checkBox_2->setChecked(true);
-    }
+    dpi_not_user = true;
+    ui->chooseScale1->setChecked(true);
 
     if(checkconfig("/external_root/boot/flags/X11_START") == true) {
         x11_not_user = true;
@@ -174,35 +168,26 @@ void oobewindow::on_rightBtn_clicked()
         ui->statusLabel->setText("1 of 4");
     }
     if(pageNumber == 2) {
-        if(ui->checkBox_2->isChecked() == true) {
-            string_writeconfig(".config/09-dpi/config", "false");
-            string_writeconfig(".config/09-dpi/config-enabled", "false");
-        }
-        else {
-            if(dpi_not_user == true) {
-                // Writing default as user didn't explicitly select any option
-                string_checkconfig_ro("/opt/inkbox_device");
-                if(checkconfig_str_val == "n705\n") {
-                    string_writeconfig(".config/09-dpi/config", "187");
-                }
-                else if(checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
-                    string_writeconfig(".config/09-dpi/config", "160");
-                }
-                else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n306\n") {
-                    string_writeconfig(".config/09-dpi/config", "195");
-                }
-                else if(checkconfig_str_val == "n437\n") {
-                    string_writeconfig(".config/09-dpi/config", "275");
-                }
-                else {
-                    string_writeconfig(".config/09-dpi/config", "187");
-                }
-                string_writeconfig(".config/09-dpi/config-enabled", "true");
-                dpi_not_user = false;
+        if(dpi_not_user == true) {
+            // Writing default as user didn't explicitly select any option
+            string_checkconfig_ro("/opt/inkbox_device");
+            if(checkconfig_str_val == "n705\n") {
+                string_writeconfig(".config/09-dpi/config", "187");
+            }
+            else if(checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
+                string_writeconfig(".config/09-dpi/config", "160");
+            }
+            else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n306\n") {
+                string_writeconfig(".config/09-dpi/config", "195");
+            }
+            else if(checkconfig_str_val == "n437\n") {
+                string_writeconfig(".config/09-dpi/config", "275");
             }
             else {
-                ;
+                string_writeconfig(".config/09-dpi/config", "187");
             }
+            string_writeconfig(".config/09-dpi/config-enabled", "true");
+            dpi_not_user = false;
         }
         ui->statusLabel->setText("2 of 4");
     }
@@ -478,23 +463,6 @@ void oobewindow::on_crimsonPro_toggled(bool checked)
     }
     else {
         ;
-    }
-}
-
-void oobewindow::on_checkBox_2_toggled(bool checked)
-{
-    // If you think something is missing, check out the on_rightBtn_clicked slot.
-    if(checked == true) {
-        ui->scalingWidget->setVisible(false);
-        string_checkconfig(".config/09-dpi/config");
-        dpiSetting = checkconfig_str_val.toStdString();
-        string_writeconfig(".config/09-dpi/config", "false");
-    }
-    else {
-        ui->scalingWidget->setVisible(true);
-
-        // Write previously chosen value
-        string_writeconfig(".config/09-dpi/config", dpiSetting);
     }
 }
 
