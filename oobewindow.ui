@@ -27,7 +27,6 @@
           <property name="font">
            <font>
             <family>Inter</family>
-            <weight>75</weight>
             <italic>false</italic>
             <bold>true</bold>
            </font>
@@ -42,7 +41,6 @@
           <property name="font">
            <font>
             <family>Inter</family>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -56,7 +54,6 @@
           <property name="font">
            <font>
             <family>Inter</family>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -121,7 +118,6 @@
                <font>
                 <family>Fraunces</family>
                 <pointsize>11</pointsize>
-                <weight>50</weight>
                 <bold>false</bold>
                </font>
               </property>
@@ -138,7 +134,6 @@
               <property name="font">
                <font>
                 <family>Chivo</family>
-                <weight>50</weight>
                 <italic>true</italic>
                 <bold>false</bold>
                </font>
@@ -172,8 +167,21 @@
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
            <layout class="QGridLayout" name="gridLayout_11">
-            <item row="12" column="0">
-             <spacer name="verticalSpacer_6">
+            <item row="11" column="0">
+             <widget class="Line" name="line_11">
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="18" column="0">
+             <spacer name="verticalSpacer_12">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -184,6 +192,166 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_13">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="17" column="0">
+             <widget class="QStackedWidget" name="darkModeWidget">
+              <widget class="QWidget" name="page_9">
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="verticalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="Line" name="line_5">
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>4</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="darkModeLabel">
+                  <property name="font">
+                   <font>
+                    <family>Chivo</family>
+                    <italic>true</italic>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Dark mode</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_9">
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>2</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_20">
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item row="0" column="0">
+                   <spacer name="horizontalSpacer_17">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QCheckBox" name="checkBox">
+                    <property name="font">
+                     <font>
+                      <family>Inter</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Enable dark mode</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_18">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="Line" name="line_10">
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>4</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_10"/>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_8">
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </item>
             <item row="4" column="0">
              <widget class="Line" name="line_4">
@@ -198,16 +366,26 @@
               </property>
              </widget>
             </item>
-            <item row="11" column="0">
-             <widget class="Line" name="line_11">
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
+            <item row="5" column="0">
+             <layout class="QGridLayout" name="gridLayout_17">
+              <property name="bottomMargin">
+               <number>0</number>
               </property>
-              <property name="lineWidth">
-               <number>4</number>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="uiScalingLabel">
+              <property name="font">
+               <font>
+                <family>Chivo</family>
+                <italic>true</italic>
+               </font>
               </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+              <property name="text">
+               <string>UI scaling factor</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -265,7 +443,6 @@
                     <property name="font">
                      <font>
                       <family>Inter</family>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -296,7 +473,6 @@
                     <property name="font">
                      <font>
                       <family>Inter</family>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -313,7 +489,6 @@
                     <property name="font">
                      <font>
                       <family>Inter</family>
-                      <weight>75</weight>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -368,168 +543,6 @@
               </widget>
               <widget class="QWidget" name="page_7"/>
              </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="Line" name="line_8">
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="lineWidth">
-               <number>4</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="18" column="0">
-             <spacer name="verticalSpacer_12">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="0">
-             <spacer name="verticalSpacer_13">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="13" column="0">
-             <widget class="Line" name="line_5">
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="lineWidth">
-               <number>4</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="0">
-             <widget class="Line" name="line_9">
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="lineWidth">
-               <number>2</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="17" column="0">
-             <widget class="Line" name="line_10">
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="lineWidth">
-               <number>4</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="0">
-             <widget class="QLabel" name="darkModeLabel">
-              <property name="font">
-               <font>
-                <family>Chivo</family>
-                <italic>true</italic>
-               </font>
-              </property>
-              <property name="text">
-               <string>Dark mode</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="16" column="0">
-             <layout class="QGridLayout" name="gridLayout_20">
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item row="0" column="0">
-               <spacer name="horizontalSpacer_17">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="checkBox">
-                <property name="font">
-                 <font>
-                  <family>Inter</family>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Enable dark mode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <spacer name="horizontalSpacer_18">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="uiScalingLabel">
-              <property name="font">
-               <font>
-                <family>Chivo</family>
-                <italic>true</italic>
-               </font>
-              </property>
-              <property name="text">
-               <string>UI scaling factor</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <layout class="QGridLayout" name="gridLayout_17">
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-             </layout>
             </item>
            </layout>
           </item>
@@ -797,7 +810,6 @@
                 <property name="font">
                  <font>
                   <family>Inter</family>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -839,7 +851,6 @@
               <property name="font">
                <font>
                 <family>Chivo</family>
-                <weight>50</weight>
                 <italic>true</italic>
                 <bold>false</bold>
                </font>
@@ -875,7 +886,6 @@
                 <property name="font">
                  <font>
                   <family>Inter</family>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -922,7 +932,6 @@
                 <property name="font">
                  <font>
                   <family>Inter</family>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -969,7 +978,6 @@
                 <property name="font">
                  <font>
                   <family>Inter</family>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -1042,7 +1050,6 @@
                 <property name="font">
                  <font>
                   <family>Inter</family>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -1207,7 +1214,6 @@
               <property name="font">
                <font>
                 <family>Chivo</family>
-                <weight>50</weight>
                 <italic>true</italic>
                 <bold>false</bold>
                </font>
@@ -1301,7 +1307,6 @@
               <property name="font">
                <font>
                 <family>Inter</family>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1349,7 +1354,6 @@
                 <property name="font">
                  <font>
                   <family>Chivo</family>
-                  <weight>50</weight>
                   <italic>true</italic>
                   <bold>false</bold>
                  </font>

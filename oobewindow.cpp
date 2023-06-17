@@ -25,6 +25,7 @@ oobewindow::oobewindow(QWidget *parent)
     ui->setupUi(this);
     ui->checkBox->setFont(QFont("u001"));
     ui->checkBox_3->setFont(QFont("u001"));
+    ui->darkModeWidget->hide();
 
     // Stylesheet and general look
     QFile stylesheetFile(":/eink.qss");
@@ -56,6 +57,9 @@ oobewindow::oobewindow(QWidget *parent)
     }
     else {
         ui->logoLabel->setStyleSheet("font-size: 55pt");
+    }
+    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n") {
+        ui->darkModeWidget->show();
     }
 
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
@@ -338,7 +342,7 @@ void oobewindow::on_checkBox_toggled(bool checked)
     else {
         string_writeconfig(".config/10-dark_mode/config", "false");
         string_writeconfig("/tmp/invertScreen", "n");
-        }
+    }
 }
 
 void oobewindow::on_sourceSerif_toggled(bool checked)
