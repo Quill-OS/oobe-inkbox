@@ -418,7 +418,7 @@ void oobewindow::on_font1_toggled(bool checked)
 void oobewindow::on_font2_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/04-book/size", "1");
+        string_writeconfig(".config/04-book/size", "3");
     }
     else {
         ;
@@ -428,7 +428,7 @@ void oobewindow::on_font2_toggled(bool checked)
 void oobewindow::on_font3_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/04-book/size", "2");
+        string_writeconfig(".config/04-book/size", "6");
     }
     else {
         ;
@@ -438,7 +438,7 @@ void oobewindow::on_font3_toggled(bool checked)
 void oobewindow::on_font4_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/04-book/size", "3");
+        string_writeconfig(".config/04-book/size", "9");
     }
     else {
         ;
@@ -448,7 +448,7 @@ void oobewindow::on_font4_toggled(bool checked)
 void oobewindow::on_font5_toggled(bool checked)
 {
     if(checked == true) {
-        string_writeconfig(".config/04-book/size", "4");
+        string_writeconfig(".config/04-book/size", "12");
     }
     else {
         ;
