@@ -52,7 +52,7 @@ oobewindow::oobewindow(QWidget *parent)
 
     ui->logoLabel->setFont(QFont(fraunces));
     string_checkconfig_ro("/opt/inkbox_device");
-    if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "kt\n") {
+    if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "n249\n" or checkconfig_str_val == "kt\n") {
         ui->logoLabel->setStyleSheet("font-size: 65pt");
     }
     else {
@@ -184,7 +184,7 @@ void oobewindow::on_rightBtn_clicked()
             else if(checkconfig_str_val == "n306\n") {
                 string_writeconfig(".config/09-dpi/config", "212");
             }
-            else if(checkconfig_str_val == "n437\n") {
+            else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
             else {
@@ -257,7 +257,7 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             else if(checkconfig_str_val == "n306\n") {
                 string_writeconfig(".config/09-dpi/config", "212");
             }
-            else if(checkconfig_str_val == "n437\n") {
+            else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
             else {
@@ -284,7 +284,7 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
         else if(checkconfig_str_val == "n306\n") {
             string_writeconfig(".config/09-dpi/config", "227");
         }
-        else if(checkconfig_str_val == "n437\n") {
+        else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
             string_writeconfig(".config/09-dpi/config", "290");
         }
         else {
@@ -309,7 +309,7 @@ void oobewindow::on_chooseScale3_toggled(bool checked)
         else if(checkconfig_str_val == "n306\n") {
             string_writeconfig(".config/09-dpi/config", "242");
         }
-        else if(checkconfig_str_val == "n437\n") {
+        else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
             string_writeconfig(".config/09-dpi/config", "305");
         }
         else {
@@ -488,7 +488,7 @@ void oobewindow::on_checkBox_3_toggled(bool checked)
 void oobewindow::pre_set_brightness(int brightnessValue) {
     string_checkconfig_ro("/opt/inkbox_device");
 
-    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "kt\n") {
+    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "n249\n" or checkconfig_str_val == "kt\n") {
         set_brightness(brightnessValue);
     }
     else if(checkconfig_str_val == "n613\n") {
