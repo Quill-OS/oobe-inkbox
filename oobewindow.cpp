@@ -187,6 +187,9 @@ void oobewindow::on_rightBtn_clicked()
             else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
+            else if(checkconfig_str_val == "n873\n") {
+                string_writeconfig(".config/09-dpi/config", "285");
+            }
             else {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
@@ -260,6 +263,9 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
+            else if(checkconfig_str_val == "n873\n") {
+                string_writeconfig(".config/09-dpi/config", "285");
+            }
             else {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
@@ -287,6 +293,9 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
         else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
             string_writeconfig(".config/09-dpi/config", "290");
         }
+        else if(checkconfig_str_val == "n873\n") {
+            string_writeconfig(".config/09-dpi/config", "300");
+        }
         else {
             string_writeconfig(".config/09-dpi/config", "214");
         }
@@ -311,6 +320,9 @@ void oobewindow::on_chooseScale3_toggled(bool checked)
         }
         else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
             string_writeconfig(".config/09-dpi/config", "305");
+        }
+        else if(checkconfig_str_val == "n873\n") {
+            string_writeconfig(".config/09-dpi/config", "315");
         }
         else {
             string_writeconfig(".config/09-dpi/config", "227");
