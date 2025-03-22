@@ -22,15 +22,12 @@ public:
     QString checkconfig_str_val;
     std::string dpiSetting;
     bool checkconfig(QString file);
-    void string_checkconfig(QString file);
-    void string_checkconfig_ro(QString file);
+    QString readFile(QString file);
     void string_writeconfig(string file, string config_option);
-    void set_brightness(int value);
-    void set_brightness_ntxio(int value);
-    void pre_set_brightness(int brightnessValue);
     void setDefaultWorkDir();
     int get_brightness();
     void cinematicBrightness(int value, int mode);
+    QString deviceID;
 
 private slots:
     void on_rightBtn_clicked();

@@ -27,6 +27,21 @@ oobewindow::oobewindow(QWidget *parent)
     ui->checkBox_3->setFont(QFont("u001"));
     ui->darkModeWidget->hide();
 
+    // Getting the screen's size
+    float sW = QGuiApplication::screens()[0]->size().width();
+    float sH = QGuiApplication::screens()[0]->size().height();
+    // Defining what the default icon size will be
+    float stdIconWidth = sW / 12.5;
+    float stdIconHeight = sH / 12.5;
+    float scale1_W = sW / 10;
+    float scale1_H = sH / 10;
+    float scale2_W = sW / 8;
+    float scale2_H = sH / 8;
+    float scale3_W = sW / 6;
+    float scale3_H = sH / 6;
+    float koboxScale_W = sW / 1.50;
+    float koboxScale_H = sH / 1.50;
+
     // Stylesheet and general look
     QFile stylesheetFile(":/eink.qss");
     stylesheetFile.open(QFile::ReadOnly);
@@ -50,17 +65,15 @@ oobewindow::oobewindow(QWidget *parent)
     QFont ibarra(family_4);
 
 
-    ui->logoLabel->setFont(QFont(fraunces));
-    string_checkconfig_ro("/opt/inkbox_device");
-    if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "n249\n" or checkconfig_str_val == "kt\n") {
-        ui->logoLabel->setStyleSheet("font-size: 65pt");
-    }
-    else {
-        ui->logoLabel->setStyleSheet("font-size: 55pt");
-    }
-    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n") {
+    deviceID = readFile("/opt/inkbox_device").trimmed();
+    if(deviceID == "n705" or deviceID == "n905" or deviceID == "n613" or deviceID == "n236" or deviceID == "n437" or deviceID == "n306") {
         ui->darkModeWidget->show();
     }
+
+    ui->logoLabel->setText("");
+    QPixmap logoPixmap(":/quill.png");
+    QPixmap scaledLogoPixmap = logoPixmap.scaled(sW / 2, sH / 2, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->logoLabel->setPixmap(scaledLogoPixmap);
 
     ui->welcomeLabel->setStyleSheet("font-size: 15pt");
     ui->roboto->setFont(notomono);
@@ -79,13 +92,6 @@ oobewindow::oobewindow(QWidget *parent)
     QFont roboto("Roboto");
     ui->roboto->setFont(roboto);
 
-    // Getting the screen's size
-    float sW = QGuiApplication::screens()[0]->size().width();
-    float sH = QGuiApplication::screens()[0]->size().height();
-    // Defining what the default icon size will be
-    float stdIconWidth = sW / 12.5;
-    float stdIconHeight = sH / 12.5;
-
     // Setting icons up
     ui->rightBtn->setProperty("type", "borderless");
     ui->rightBtn->setText("");
@@ -99,15 +105,6 @@ oobewindow::oobewindow(QWidget *parent)
     ui->leftBtn->setIconSize(QSize(stdIconWidth, stdIconHeight));
 
     ui->startBtn->setStyleSheet("padding: 30px; background: lightGrey");
-
-    float scale1_W = sW / 10;
-    float scale1_H = sH / 10;
-    float scale2_W = sW / 8;
-    float scale2_H = sH / 8;
-    float scale3_W = sW / 6;
-    float scale3_H = sH / 6;
-    float koboxScale_W = sW / 1.50;
-    float koboxScale_H = sH / 1.50;
 
     QPixmap pixmap(":/list.png");
     QPixmap scaled1Pixmap = pixmap.scaled(scale1_W, scale1_H, Qt::KeepAspectRatio);
@@ -149,7 +146,7 @@ oobewindow::oobewindow(QWidget *parent)
     // Brightness
     int brightnessVal = 50;
     std::string brightnessValStr = std::to_string(brightnessVal);
-    cinematicBrightness(brightnessVal, 0);
+    cinematicBrightness(100, 5);
     setDefaultWorkDir();
     string_writeconfig(".config/03-brightness/config", brightnessValStr);
 }
@@ -174,20 +171,19 @@ void oobewindow::on_rightBtn_clicked()
     if(pageNumber == 2) {
         if(dpi_not_user == true) {
             // Writing default as user didn't explicitly select any option
-            string_checkconfig_ro("/opt/inkbox_device");
-            if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
+            if(deviceID == "n705" or deviceID == "n905" or deviceID == "kt") {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
-            else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n") {
+            else if(deviceID == "n613" or deviceID == "n236") {
                 string_writeconfig(".config/09-dpi/config", "195");
             }
-            else if(checkconfig_str_val == "n306\n") {
+            else if(deviceID == "n306") {
                 string_writeconfig(".config/09-dpi/config", "212");
             }
-            else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
+            else if(deviceID == "n437" or deviceID == "n249") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
-            else if(checkconfig_str_val == "n873\n") {
+            else if(deviceID == "n873") {
                 string_writeconfig(".config/09-dpi/config", "285");
             }
             else {
@@ -205,7 +201,7 @@ void oobewindow::on_rightBtn_clicked()
         ui->statusLabel->setText("4 of 4");
     }
     if(pageNumber == 5) {
-        ui->statusLabel->setText("Welcome to InkBox");
+        ui->statusLabel->setText("Welcome to Quill");
         ui->rightBtn->setEnabled(false);
     }
 }
@@ -238,7 +234,7 @@ void oobewindow::on_leftBtn_clicked()
         ui->rightBtn->setEnabled(true);
     }
     if(pageNumber == 5) {
-        ui->statusLabel->setText("Welcome to InkBox");
+        ui->statusLabel->setText("Welcome to Quill");
         ui->rightBtn->setEnabled(false);
     }
 }
@@ -250,20 +246,19 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
             ;
         }
         else {
-            string_checkconfig_ro("/opt/inkbox_device");
-            if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
+            if(deviceID == "n705" or deviceID == "n905" or deviceID == "kt") {
                 string_writeconfig(".config/09-dpi/config", "160");
             }
-            else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n") {
+            else if(deviceID == "n613" or deviceID == "n236") {
                 string_writeconfig(".config/09-dpi/config", "195");
             }
-            else if(checkconfig_str_val == "n306\n") {
+            else if(deviceID == "n306") {
                 string_writeconfig(".config/09-dpi/config", "212");
             }
-            else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
+            else if(deviceID == "n437" or deviceID == "n249") {
                 string_writeconfig(".config/09-dpi/config", "275");
             }
-            else if(checkconfig_str_val == "n873\n") {
+            else if(deviceID == "n873") {
                 string_writeconfig(".config/09-dpi/config", "285");
             }
             else {
@@ -280,20 +275,19 @@ void oobewindow::on_chooseScale1_toggled(bool checked)
 void oobewindow::on_chooseScale2_toggled(bool checked)
 {
     if(checked == true) {
-        string_checkconfig_ro("/opt/inkbox_device");
-        if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
+        if(deviceID == "n705" or deviceID == "n905" or deviceID == "kt") {
             string_writeconfig(".config/09-dpi/config", "187");
         }
-        else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n") {
+        else if(deviceID == "n613" or deviceID == "n236") {
             string_writeconfig(".config/09-dpi/config", "210");
         }
-        else if(checkconfig_str_val == "n306\n") {
+        else if(deviceID == "n306") {
             string_writeconfig(".config/09-dpi/config", "227");
         }
-        else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
+        else if(deviceID == "n437" or deviceID == "n249") {
             string_writeconfig(".config/09-dpi/config", "290");
         }
-        else if(checkconfig_str_val == "n873\n") {
+        else if(deviceID == "n873") {
             string_writeconfig(".config/09-dpi/config", "300");
         }
         else {
@@ -308,20 +302,19 @@ void oobewindow::on_chooseScale2_toggled(bool checked)
 void oobewindow::on_chooseScale3_toggled(bool checked)
 {
     if(checked == true) {
-        string_checkconfig_ro("/opt/inkbox_device");
-        if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "kt\n") {
+        if(deviceID == "n705" or deviceID == "n905" or deviceID == "kt") {
             string_writeconfig(".config/09-dpi/config", "200");
         }
-        else if(checkconfig_str_val == "n613\n" or checkconfig_str_val == "n236\n") {
+        else if(deviceID == "n613" or deviceID == "n236") {
             string_writeconfig(".config/09-dpi/config", "225");
         }
-        else if(checkconfig_str_val == "n306\n") {
+        else if(deviceID == "n306") {
             string_writeconfig(".config/09-dpi/config", "242");
         }
-        else if(checkconfig_str_val == "n437\n" or checkconfig_str_val == "n249\n") {
+        else if(deviceID == "n437" or deviceID == "n249") {
             string_writeconfig(".config/09-dpi/config", "305");
         }
-        else if(checkconfig_str_val == "n873\n") {
+        else if(deviceID == "n873") {
             string_writeconfig(".config/09-dpi/config", "315");
         }
         else {
@@ -497,36 +490,6 @@ void oobewindow::on_checkBox_3_toggled(bool checked)
     }
 }
 
-void oobewindow::pre_set_brightness(int brightnessValue) {
-    string_checkconfig_ro("/opt/inkbox_device");
-
-    if(checkconfig_str_val == "n705\n" or checkconfig_str_val == "n905\n" or checkconfig_str_val == "n236\n" or checkconfig_str_val == "n437\n" or checkconfig_str_val == "n306\n" or checkconfig_str_val == "n249\n" or checkconfig_str_val == "kt\n") {
-        set_brightness(brightnessValue);
-    }
-    else if(checkconfig_str_val == "n613\n") {
-        set_brightness_ntxio(brightnessValue);
-    }
-    else {
-        set_brightness(brightnessValue);
-    }
-}
-
-void oobewindow::set_brightness_ntxio(int value) {
-    // Thanks to Kevin Short for this (GloLight)
-    int light;
-    if((light = open("/dev/ntx_io", O_RDWR)) == -1) {
-            fprintf(stderr, "Error opening ntx_io device\n");
-    }
-    ioctl(light, 241, value);
-}
-
-void oobewindow::set_brightness(int value) {
-    std::ofstream fhandler;
-    fhandler.open("/var/run/brightness");
-    fhandler << value;
-    fhandler.close();
-}
-
 bool oobewindow::checkconfig(QString file) {
     QFile config(file);
     config.open(QIODevice::ReadOnly);
@@ -549,19 +512,18 @@ void oobewindow::string_writeconfig(string file, string config_option) {
     fhandler << config_option;
     fhandler.close();
 }
-void oobewindow::string_checkconfig(QString file) {
-    QFile config(file);
-    config.open(QIODevice::ReadWrite);
-    QTextStream in (&config);
-    checkconfig_str_val = in.readAll();
-    config.close();
-}
-void oobewindow::string_checkconfig_ro(QString file) {
-    QFile config(file);
-    config.open(QIODevice::ReadOnly);
-    QTextStream in (&config);
-    checkconfig_str_val = in.readAll();
-    config.close();
+
+QString oobewindow::readFile(QString file) {
+    if(QFile::exists(file)) {
+        QFile fileToRead(file);
+        fileToRead.open(QIODevice::ReadOnly);
+        QTextStream in (&fileToRead);
+        QString content = in.readAll();
+        return content;
+    }
+    else {
+        return NULL;
+    }
 }
 
 void oobewindow::setDefaultWorkDir() {
@@ -569,15 +531,14 @@ void oobewindow::setDefaultWorkDir() {
 }
 
 int oobewindow::get_brightness() {
-    string_checkconfig_ro("/opt/inkbox_device");
-    if(checkconfig_str_val == "n613") {
-        string_checkconfig_ro(".config/03-brightness/config");
+    if(deviceID == "n613") {
+        QString brightnessString = readFile(".config/03-brightness/config");
         int brightness;
-        if(checkconfig_str_val == "") {
+        if(brightnessString.isEmpty()) {
             brightness = 0;
         }
         else {
-            brightness = checkconfig_str_val.toInt();
+            brightness = brightnessString.toInt();
         }
         return brightness;
     }
@@ -592,27 +553,13 @@ int oobewindow::get_brightness() {
     return 0;
 }
 
-void oobewindow::cinematicBrightness(int value, int mode) {
-    /* mode can be 0 or 1, respectively
-     * 0: Bring UP brightness
-     * 1: Bring DOWN brightness
-    */
-    if(mode == 0) {
-        int brightness = 0;
-        while(brightness != value) {
-            brightness = brightness + 1;
-            pre_set_brightness(brightness);
-            QThread::msleep(33);
-        }
-    }
-    else {
-        int brightness = get_brightness();
-        while(brightness != 0) {
-            brightness = brightness - 1;
-            pre_set_brightness(brightness);
-            QThread::msleep(33);
-        }
-    }
+void oobewindow::cinematicBrightness(int brightness, int warmth) {
+    QString cbPath("/external_root/lib/ld-musl-armhf.so.1");
+    QStringList cbArgs;
+    cbArgs << "/external_root/opt/bin/cinematic_brightness" << QString::number(brightness) << QString::number(10 * warmth) << "-1" << "-1" << "3000" << "1";
+    QProcess *cbProc = new QProcess();
+    cbProc->startDetached(cbPath, cbArgs);
+    cbProc->deleteLater();
 }
 
 void oobewindow::on_bitter_toggled(bool checked)

@@ -99,8 +99,8 @@
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <spacer name="verticalSpacer">
+            <item row="6" column="0">
+             <spacer name="verticalSpacer_2">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -111,6 +111,23 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="welcomeLabel">
+              <property name="font">
+               <font>
+                <family>Chivo</family>
+                <italic>true</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Welcome</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="logoLabel">
@@ -129,27 +146,26 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="welcomeLabel">
-              <property name="font">
-               <font>
-                <family>Chivo</family>
-                <italic>true</italic>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Welcome</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <spacer name="verticalSpacer_2">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="0">
+             <spacer name="verticalSpacer_20">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Maximum</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1359,7 +1375,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Start using InkBox</string>
+                 <string>Start using Quill</string>
                 </property>
                </widget>
               </item>
